@@ -29,7 +29,15 @@ curl -X POST "http://localhost:8000/v1/chat/completions" \
      --data '{
          "model": "fireworks-ai/firefunction-v1",
          "messages": [
-             {"role": "user", "content": "¡Hola!"}
-         ]
+             {"role": "user", "content": "Convierte 100 USD a EUR."}
+         ],
+         "function_call": {
+             "name": "convertir_moneda",
+             "arguments": {
+                 "cantidad": 100,
+                 "moneda_origen": "USD",
+                 "moneda_destino": "EUR"
+             }
+         }
      }'
 ```

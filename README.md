@@ -1,29 +1,35 @@
-# vLLM FireFunction
+# Transformers FireFunction
+
+## Descripción
+
+Este proyecto utiliza el modelo **FireFunction v1** con la librería **Transformers** y está implementado usando **FastAPI** para construir un servidor que expone un endpoint para realizar inferencias con el modelo. Se puede ejecutar tanto de forma local como mediante contenedores Docker.
 
 ## Instalación
 
-Sigue los siguientes pasos para configurar el entorno y ejecutar el proyecto:
-
-### 1. Clonar el repositorio
+#### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/juanpb27/vllm-firefunction.git
-cd vllm-firefunction
+git clone https://github.com/juanpb27/transformers-firefunction.git
+cd transformers-firefunction
 ```
 
-2. Crear un entorno virtual
+#### 2. Construir y levantar el contenedor usando Docker Compose
 ```bash
-python -m venv venv
-source venv/bin/activate  # En Windows utiliza 'venv\Scripts\activate'
+docker-compose up --build
 ```
 
-3. Instalar dependencias
-```bash
-pip install -r requirements.txt
-```
+Esto construirá la imagen del contenedor y levantará el servidor FastAPI.
 
-5. Ejecutar la aplicación
+3. Probar la aplicación
+Puedes probar la aplicación utilizando curl o alguna herramienta como Postman. Aquí un ejemplo de un curl:
+
 ```bash
-python app.py
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+     -H "Content-Type: application/json" \
+     --data '{
+         "model": "fireworks-ai/firefunction-v1",
+         "messages": [
+             {"role": "user", "content": "¡Hola!"}
+         ]
+     }'
 ```
-Esto iniciará el servidor vLLM utilizando el modelo FireFunction v1.

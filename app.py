@@ -1,7 +1,7 @@
 import subprocess
 
 def run_vllm():
-    # Comando para ejecutar el modelo usando vLLM
+    # Comando para ejecutar el modelo usando vLLM con CPU
     subprocess.run(["vllm", "serve", "fireworks-ai/firefunction-v1"])
 
 if __name__ == "__main__":

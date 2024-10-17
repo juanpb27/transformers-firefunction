@@ -1,7 +1,4 @@
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Cargar variables de entorno desde el archivo .env
 API_HOST = os.getenv("API_HOST", "127.0.0.1")

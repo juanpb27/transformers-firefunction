@@ -4,3 +4,4 @@ transformers
 uvicorn
 accelerate
 protobuf
+sentencepiece

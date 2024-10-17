@@ -20,12 +20,7 @@ async def chat_completions(request: Request):
     # Procesar la solicitud a través del modelo
     model_inputs = tokenizer.apply_chat_template(messages, return_tensors="pt").to(model.device)
 
-    # Verificar si el tensor tiene las dimensiones correctas
-    if len(model_inputs['input_ids'].shape) == 2:
-        # Si tiene dos dimensiones, agregar una dimensión extra para el batch
-        model_inputs['input_ids'] = model_inputs['input_ids'].unsqueeze(0)
-
-    # Generar la respuesta del modelo
+    # Generar la respuesta del modelo sin modificar las dimensiones del tensor
     generated_ids = model.generate(model_inputs['input_ids'], max_new_tokens=128)
     decoded = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
 
